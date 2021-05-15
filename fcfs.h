@@ -1,76 +1,65 @@
-// C++ program to Calculate Waiting
-// Time for given Processes
+//First Come, First Served (FCFS)
+//Creditos a GeekforGeeks, disponible en: https://www.geeksforgeeks.org/first-come-first-serve-cpu-scheduling-non-preemptive/
 #include<bits/stdc++.h>
 using namespace std;
   
-// Function to Calculate waiting time
-// and average waiting time
-void CalculateWaitingTime(int at[],
-                          int bt[], int N)
-{
-  
-    // Declare the array for waiting
-    // time
-    int wt[N];
-  
-    // Waiting time for first process
-    // is 0
+struct process{
+    int pid; //ID process
+    int at; //Arrival Time
+    int bt; //Burst Time
+};
+
+// Function to sort the Process to AT
+bool comparison2(process a, process b){
+    return (a.at < b.at);
+}
+
+// Function to calculate turn around time
+void turnAroundTime(process proc[], int N, int wt[], int tat[]){
+    // calculating turnaround time by adding bt[i] + wt[i]
+    for (int  i = 0; i < N ; i++)
+        tat[i] = proc[i].bt + wt[i];
+}
+
+// Function to find the waiting time for all processes
+void waitingTime(process proc[], int N, int wt[]){
+    // Waiting time for first process is 0
     wt[0] = 0;
   
-    // Print waiting time process 1
-    cout << "P.No.\tArrival Time\t"
-         << "Burst Time\tWaiting Time\n";
-    cout << "1"
-         << "\t\t" << at[0] << "\t\t"
-         << bt[0] << "\t\t" << wt[0] << endl;
-  
-    // Calculating waiting time for
-    // each process from the given
+    // Calculating waiting time for each process from the given
     // formula
-    for (int i = 1; i < 5; i++) {
-        wt[i] = (at[i - 1] + bt[i - 1] + wt[i - 1]) - at[i];
-  
-        // Print the waiting time for
-        // each process
-        cout << i + 1 << "\t\t" << at[i]
-             << "\t\t" << bt[i] << "\t\t"
-             << wt[i] << endl;
-    }
-  
-    // Declare variable to calculate
-    // average
-    float average;
-    float sum = 0;
-  
-    // Loop to calculate sum of all
-    // waiting time
-    for (int i = 0; i < 5; i++) {
-        sum = sum + wt[i];
-    }
-  
-    // Find average waiting time
-    // by dividing it by no. of process
-    average = sum / 5;
-  
-    // Print Average Waiting Time
-    cout << "Average waiting time = "
-         << average;
+    for (int i = 1; i < N; i++)
+        wt[i] = (proc[i - 1].at + proc[i - 1].bt + wt[i - 1]) - proc[i].at;
 }
-  
-// Driver code
-/*int main()
+
+// Function to Calculate waiting time and average waiting time
+void fcfsScheduling(process proc[], int N)
 {
-    // Number of process
-    int N = 5;
+    //Sorted process by Arrival time
+    sort(proc, proc + N, comparison2);
+
+    // Declare auxiliar variables
+    int wt[N], tat[N], total_wt = 0, total_tat = 0;
+
+    //Calculate Waiting Time
+    waitingTime(proc,N,wt);
   
-    // Array for Arrival time
-    int at[] = { 0, 1, 2, 3, 4 };
-  
-    // Array for Burst Time
-    int bt[] = { 4, 3, 1, 2, 5 };
-  
-    // Function call to find
-    // waiting time
-    CalculateWaitingTime(at, bt, N);
-    return 0;
-}*/
+    //Calculate TurnAround Time
+    turnAroundTime(proc, N, wt, tat);
+
+    //Display processes along with all details
+    cout << "\nProcesses  "<< " Burst time  "
+         << " Waiting time/Response time  " << " Turn around time\n";
+ 
+    // Calculate total waiting time and total turn around time
+    for (int  i=0; i<N; i++){
+        total_wt = total_wt + wt[i];
+        total_tat = total_tat + tat[i];
+        cout << "   " << proc[i].pid << "\t\t"
+             << proc[i].bt << "\t    " << wt[i]
+             << "\t\t  " << tat[i] <<endl;
+    }
+ 
+    cout << "\nAverage waiting time = " << (float)total_wt / (float)N;
+    cout << "\nAverage turn around time = " << (float)total_tat / (float)N;
+}
