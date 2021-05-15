@@ -3,26 +3,26 @@
 #include<bits/stdc++.h>
 using namespace std;
   
-struct process{
+struct process2{
     int pid; //ID process
     int at; //Arrival Time
     int bt; //Burst Time
 };
 
-// Function to sort the Process to AT
-bool comparison2(process a, process b){
+// Function to sort the process to AT
+bool comparison2(process2 a, process2 b){
     return (a.at < b.at);
 }
 
 // Function to calculate turn around time
-void turnAroundTime(process proc[], int N, int wt[], int tat[]){
+void turnAroundTime(process2 proc[], int N, int wt[], int tat[]){
     // calculating turnaround time by adding bt[i] + wt[i]
     for (int  i = 0; i < N ; i++)
         tat[i] = proc[i].bt + wt[i];
 }
 
 // Function to find the waiting time for all processes
-void waitingTime(process proc[], int N, int wt[]){
+void waitingTime(process2 proc[], int N, int wt[]){
     // Waiting time for first process is 0
     wt[0] = 0;
   
@@ -33,7 +33,7 @@ void waitingTime(process proc[], int N, int wt[]){
 }
 
 // Function to Calculate waiting time and average waiting time
-void fcfsScheduling(process proc[], int N){
+void fcfsScheduling(process2 proc[], int N){
     //Sorted process by Arrival time
     sort(proc, proc + N, comparison2);
 
@@ -47,16 +47,16 @@ void fcfsScheduling(process proc[], int N){
     turnAroundTime(proc, N, wt, tat);
 
     //Display processes along with all details
-    cout << "\nProcesses  "<< " Burst time  "
-         << " Waiting time/Response time  " << " Turn around time\n";
+    cout << "\nProcesses  "<< " BT  "
+         << " WT/RT  " << " TAT\n";
  
     // Calculate total waiting time and total turn around time
     for (int  i=0; i<N; i++){
         total_wt = total_wt + wt[i];
         total_tat = total_tat + tat[i];
-        cout << "   " << proc[i].pid << "\t\t"
+        cout << "   " << proc[i].pid << "\t\t  "
              << proc[i].bt << "\t    " << wt[i]
-             << "\t\t  " << tat[i] <<endl;
+             << "\t " << tat[i] <<endl;
     }
  
     cout << "\nAverage waiting time = " << (float)total_wt / (float)N;
