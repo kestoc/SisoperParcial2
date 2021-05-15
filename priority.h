@@ -32,7 +32,10 @@ void findTurnAroundTime( Process proc[], int n, int wt[], int tat[]){
 }
  
 //Function to calculate average time
-void findavgTime(Process proc[], int n){
+void priorityScheduling(Process proc[], int n){
+    // Sort processes by priority
+    sort(proc, proc + n, comparison);
+
     int wt[n], tat[n], total_wt = 0, total_tat = 0;
  
     //Function to find waiting time of all processes
@@ -56,15 +59,4 @@ void findavgTime(Process proc[], int n){
  
     cout << "\nAverage waiting time = " << (float)total_wt / (float)n;
     cout << "\nAverage turn around time = " << (float)total_tat / (float)n;
-}
- 
-void priorityScheduling(Process proc[], int n){
-    // Sort processes by priority
-    sort(proc, proc + n, comparison);
- 
-    cout<< "Order in which processes gets executed \n";
-    for (int  i = 0 ; i <  n; i++)
-        cout << proc[i].pid <<" " ;
- 
-    findavgTime(proc, n);
 }

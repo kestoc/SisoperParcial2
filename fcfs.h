@@ -33,8 +33,7 @@ void waitingTime(process proc[], int N, int wt[]){
 }
 
 // Function to Calculate waiting time and average waiting time
-void fcfsScheduling(process proc[], int N)
-{
+void fcfsScheduling(process proc[], int N){
     //Sorted process by Arrival time
     sort(proc, proc + N, comparison2);
 
