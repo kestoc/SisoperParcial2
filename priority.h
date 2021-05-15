@@ -52,9 +52,9 @@ void priorityScheduling(process1 proc[], int N){
     for (int  i=0; i<N; i++){
         total_wt = total_wt + wt[i];
         total_tat = total_tat + tat[i];
-        cout << "   " << proc[i].pid << "\t\t  "
-             << proc[i].bt << "\t    " << wt[i]
-             << "\t " << tat[i] <<endl;
+        cout << "   " << proc[i].pid << "\t\t   "
+             << proc[i].bt << "\t   " << wt[i]
+             << "\t    " << tat[i] <<endl;
     }
  
     cout << "\nAverage waiting time = " << (float)total_wt / (float)N;
