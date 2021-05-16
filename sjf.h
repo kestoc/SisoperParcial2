@@ -47,7 +47,7 @@ void dispGanttChart3(process3 proc[],int N, int wt[])
 {
     int temp, prev = 0;
     process3* spaces = proc;
-    cout << "\n\nGantt Chart (IS indicates ideal state) :- \n\n+";
+    cout << "\n\nGantt Chart SJF :- \n\n+";
 
     // For 1st row of gantt chart
     for(int i = 0; i < N; i++) {
@@ -127,8 +127,8 @@ void sjfScheduling(process3 proc[], int N){
              << "\t\t  " << tat[i] <<endl;
     }
  
-    cout << "\nAverage waiting time = " << (float)total_wt / (float)N;
-    cout << "\nAverage turn around time = " << (float)total_tat / (float)N;
+    cout << "\nAverage WT SJF = " << (float)total_wt / (float)N;
+    cout << "\nAverage TAT SJF = " << (float)total_tat / (float)N;
 
     //Gantt Chart
     dispGanttChart3(proc,N,wt);

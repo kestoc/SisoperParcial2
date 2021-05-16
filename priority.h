@@ -41,7 +41,7 @@ void dispGanttChart1(process1 proc[],int N, int wt[])
 {
     int temp, prev = 0;
     process1* spaces = proc;
-    cout << "\n\nGantt Chart (IS indicates ideal state) :- \n\n+";
+    cout << "\n\nGantt Chart Priority :- \n\n+";
 
     // For 1st row of gantt chart
     for(int i = 0; i < N; i++) {
@@ -119,8 +119,8 @@ void priorityScheduling(process1 proc[], int N){
              << "\t\t  " << tat[i] <<endl;
     }
  
-    cout << "\nAverage waiting time = " << (float)total_wt / (float)N;
-    cout << "\nAverage turn around time = " << (float)total_tat / (float)N;
+    cout << "\nAverage WT Priority = " << (float)total_wt / (float)N;
+    cout << "\nAverage TAT Priority = " << (float)total_tat / (float)N;
 
     //Gantt Chart
     dispGanttChart1(proc,N,wt);

@@ -42,7 +42,7 @@ void dispGanttChart2(process2 proc[],int N, int wt[])
 {
     int temp, prev = 0;
     process2* spaces = proc;
-    cout << "\n\nGantt Chart (IS indicates ideal state) :- \n\n+";
+    cout << "\n\nGantt Chart FCFS :- \n\n+";
 
     // For 1st row of gantt chart
     for(int i = 0; i < N; i++) {
@@ -120,8 +120,8 @@ void fcfsScheduling(process2 proc[], int N){
              << "\t\t  " << tat[i] <<endl;
     }
  
-    cout << "\nAverage waiting time = " << (float)total_wt / (float)N;
-    cout << "\nAverage turn around time = " << (float)total_tat / (float)N;
+    cout << "\nAverage WT FCFS = " << (float)total_wt / (float)N;
+    cout << "\nAverage TAT FCFS = " << (float)total_tat / (float)N;
 
     //Gantt Chart
     dispGanttChart2(proc,N,wt);
