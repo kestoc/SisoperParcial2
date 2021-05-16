@@ -30,7 +30,55 @@ void findTurnAroundTime( process1 proc[], int N, int wt[], int tat[]){
     for (int  i = 0; i < N ; i++)
         tat[i] = proc[i].bt + wt[i];
 }
- 
+
+void dispGanttChart1(process1 proc[],int N, int wt[])
+{
+    int temp, prev = 0;
+    process1* spaces = proc;
+    cout << "\n\nGantt Chart (IS indicates ideal state) :- \n\n+";
+
+    // For 1st row of gantt chart
+    for(int i = 0; i < N; i++) {
+        cout << string(to_string(spaces[i].pid).length()
+                           + (spaces[i].pid != -1)
+                           + 2 * spaces[i].bt,
+                       '-')
+             << "+";
+    }
+    cout << "\n|";
+
+    // For process no. in 2nd row
+   for(int i = 0; i < N; i++) {
+        cout << string(spaces[i].bt, ' ');
+        if (spaces[i].pid == -1)
+            cout << "IS" << string(spaces[i].bt, ' ') << '|';
+        else
+            cout << "P" << spaces[i].pid
+                 << string(spaces[i].bt, ' ') << '|';
+    }
+    cout << "\n+";
+
+    for(int i = 0; i < N; i++) {
+        cout << (string(to_string(spaces[i].pid).length()
+                            + (spaces[i].pid != -1)
+                            + 2 * spaces[i].bt,
+                        '-'))
+             << "+";
+    }
+    cout << "\n0";
+    int ct = 0; 
+//For 3rd row of gantt chart
+    for(int i = 0; i < N; i++) {
+        cout << (string(to_string(spaces[i].pid).length()
+                            + (spaces[i].pid != -1)
+                            + 2 * spaces[i].bt,
+                        ' '))
+             << ct + spaces[i].bt;
+        ct += spaces[i].bt;
+    }
+    cout << "\n\n";
+}
+
 //Function to calculate average time
 void priorityScheduling(process1 proc[], int N){
     // Sort processes by priority
@@ -59,4 +107,7 @@ void priorityScheduling(process1 proc[], int N){
  
     cout << "\nAverage waiting time = " << (float)total_wt / (float)N;
     cout << "\nAverage turn around time = " << (float)total_tat / (float)N;
+
+    //Gantt Chart
+    dispGanttChart1(proc,N,wt);
 }
