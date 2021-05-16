@@ -1,4 +1,9 @@
-//Shortest Job First (SJF)
+/*
+    Algorithm: Shortest Job First (SJF)
+    Members:
+        - Santiago Collantes Zuluaga
+        - Kevin Steven Ocampo M.
+*/
 #include<bits/stdc++.h>
 #include <thread>
 using namespace std;

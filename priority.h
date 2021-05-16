@@ -1,5 +1,10 @@
-//Priority Schedulling
-//Creditos a GeekforGeeks, disponible en: https://www.geeksforgeeks.org/program-for-priority-cpu-scheduling-set-1/
+/*
+    Algorithm: Priority Scheduling
+    Members:
+        - Santiago Collantes Zuluaga
+        - Kevin Steven Ocampo M.
+    Creditos a GeekforGeeks, disponible en: https://www.geeksforgeeks.org/program-for-priority-cpu-scheduling-set-1/
+*/
 #include<bits/stdc++.h>
 #include <thread>
 using namespace std;

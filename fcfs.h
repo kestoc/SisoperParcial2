@@ -1,5 +1,9 @@
-//First Come, First Served (FCFS)
-//Creditos a GeekforGeeks, disponible en: https://www.geeksforgeeks.org/first-come-first-serve-cpu-scheduling-non-preemptive/
+/*
+    Algorithm: First Come, First Served (FCFS)
+    Members:
+        - Santiago Collantes Zuluaga
+        - Kevin Steven Ocampo M.
+*/
 #include<bits/stdc++.h>
 #include <thread>
 using namespace std;

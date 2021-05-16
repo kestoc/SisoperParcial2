@@ -1,3 +1,9 @@
+/*
+    Algorithm: Main function
+    Members:
+        - Santiago Collantes Zuluaga
+        - Kevin Steven Ocampo M.
+*/
 #include<bits/stdc++.h>
 #include <thread>
 #include "priority.h"
@@ -6,10 +12,9 @@
 using namespace std;
 
 int main(){
-    process1 proc[] = {{5, 11, 7}, {4, 6, 9}, {3, 4, 10}, {2, 3, 5}, {1, 1, 8}};
-    int n = sizeof proc / sizeof proc[0];
-    priorityScheduling(proc, n);
-    /*
+    //The excute for all algorithms of scheduling will be through
+    //threads, as they will run in parallel.
+    
     //Priority Example
     process1 proc1[] = {{5, 11, 7}, {4, 6, 9}, {3, 4, 10}, {2, 3, 5}, {1, 1, 8}};
     int N1 = sizeof proc1 / sizeof proc1[0];
@@ -27,7 +32,7 @@ int main(){
 
     t1.join() //Wait for thread t1 to finish
     t2.join() //Wait for thread t2 to finish
-    t3.join() //Wait for thread t3 to finish*/
+    t3.join() //Wait for thread t3 to finish
 
     return 0;
 }
