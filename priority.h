@@ -1,6 +1,7 @@
 //Priority Schedulling
 //Creditos a GeekforGeeks, disponible en: https://www.geeksforgeeks.org/program-for-priority-cpu-scheduling-set-1/
 #include<bits/stdc++.h>
+#include <thread>
 using namespace std;
 
 struct process1{
@@ -67,16 +68,24 @@ void dispGanttChart1(process1 proc[],int N, int wt[])
     }
     cout << "\n0";
     int ct = 0; 
-//For 3rd row of gantt chart
+    //For 3rd row of gantt chart
     for(int i = 0; i < N; i++) {
-        cout << (string(to_string(spaces[i].pid).length()
+        if(ct >= 10){
+            cout<< (string(to_string(spaces[i].pid).length()
+                            + (spaces[i].pid != -1)
+                            + 2 * spaces[i].bt - 1,
+                        ' '))
+             << ct + spaces[i].bt;
+        }
+        else{
+            cout<< (string(to_string(spaces[i].pid).length()
                             + (spaces[i].pid != -1)
                             + 2 * spaces[i].bt,
                         ' '))
              << ct + spaces[i].bt;
+        }
         ct += spaces[i].bt;
     }
-    cout << "\n\n";
 }
 
 //Function to calculate average time
@@ -100,9 +109,9 @@ void priorityScheduling(process1 proc[], int N){
     for (int  i=0; i<N; i++){
         total_wt = total_wt + wt[i];
         total_tat = total_tat + tat[i];
-        cout << "   " << proc[i].pid << "\t\t   "
-             << proc[i].bt << "\t   " << wt[i]
-             << "\t    " << tat[i] <<endl;
+        cout << "   P" << proc[i].pid << "\t\t   "
+             << proc[i].bt << "\t\t" << wt[i]
+             << "\t\t  " << tat[i] <<endl;
     }
  
     cout << "\nAverage waiting time = " << (float)total_wt / (float)N;

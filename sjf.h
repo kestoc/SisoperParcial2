@@ -1,5 +1,6 @@
 //Shortest Job First (SJF)
 #include<bits/stdc++.h>
+#include <thread>
 using namespace std;
 
 struct process3{
@@ -74,11 +75,20 @@ void dispGanttChart3(process3 proc[],int N, int wt[])
     cout << "\n0";
 //For 3rd row of gantt chart
     for(int i = 0; i < N; i++) {
-        cout << (string(to_string(spaces[i].pid).length()
+        if(spaces[i].at + spaces[i].bt + wt[i] >= 10){
+            cout << (string(to_string(spaces[i].pid).length()
+                            + (spaces[i].pid != -1)
+                            + 2 * spaces[i].bt - 1,
+                        ' '))
+            << spaces[i].at + spaces[i].bt + wt[i];
+        }
+        else {
+            cout <<(string(to_string(spaces[i].pid).length()
                             + (spaces[i].pid != -1)
                             + 2 * spaces[i].bt,
                         ' '))
              << spaces[i].at + spaces[i].bt + wt[i];
+        }
     }
     cout << "\n\n";
 }
@@ -107,9 +117,9 @@ void sjfScheduling(process3 proc[], int N){
     for (int  i=0; i<N; i++){
         total_wt = total_wt + wt[i];
         total_tat = total_tat + tat[i];
-        cout << "   " << proc[i].pid << "\t\t   "
-             << proc[i].bt << "\t   " << wt[i]
-             << "\t    " << tat[i] <<endl;
+        cout << "   P" << proc[i].pid << "\t\t   "
+             << proc[i].bt << "\t\t" << wt[i]
+             << "\t\t  " << tat[i] <<endl;
     }
  
     cout << "\nAverage waiting time = " << (float)total_wt / (float)N;

@@ -1,0 +1,17 @@
+
+Processes   BT   WT/RT   TAT
+   P3		   4		0		  4
+   P4		   6		4		  10
+   P1		   1		10		  11
+   P5		   11		11		  22
+   P2		   3		22		  25
+
+Average waiting time = 9.4
+Average turn around time = 14.4
+
+Gantt Chart (IS indicates ideal state) :- 
+
++----------+--------------+----+------------------------+--------+
+|    P3    |      P4      | P1 |           P5           |   P2   |
++----------+--------------+----+------------------------+--------+
+0          4              10   11                       22       25
